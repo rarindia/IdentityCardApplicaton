@@ -1,0 +1,21 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/IDCard/.vs
+/IDCard/IDC.Base.DTO/bin
+/IDCard/IDC.Base.DTO/obj
+/IDCard/IDC.Business/bin
+/IDCard/IDC.Business/obj
+/IDCard/IDC.DataProvider/bin
+/IDCard/IDC.DataProvider/obj
+/IDCard/IDC.DTO/bin
+/IDCard/IDC.DTO/obj
+/IDCard/IDC.ExceptionManager/bin
+/IDCard/IDC.ExceptionManager/obj
+/IDCard/IDC.ViewModel/bin
+/IDCard/IDC.ViewModel/obj
+/IDCard/IDC.Web.UI/bin
+/packages
+/IDCard/IDC.Web.UI/obj

@@ -1,0 +1,167 @@
+﻿@model IDC.ViewModel.StudentIdentityCardViewModel
+
+<script src="@Url.Content("~/Scripts/IDC_Scripts/Student/StudentIdentityCard.js")" type="text/javascript"></script>
+
+@Html.HiddenFor(model => model.StudentId)
+
+
+<h5>Student Information :  @Model.StudentFullName</h5>
+<hr style="border: solid 0.5px" />
+
+<form id="FormSaveStudentIdentityCard" method="post">
+    <div class="col-sm-12">
+        <div class="col-sm-12">
+
+            <div class="col-sm-6">
+                <div class="form-group fg-line">
+                    @Html.HiddenFor(model => model.StudentImage)
+                    <a class="mfpAjaxModal" title="Upload Image" id="StudentImageUpload" href="/StudentIdentityCard/StudentImageUpload">
+                        @*Upload Image*@
+
+                        @if (Model.StudentImage == null || Model.StudentImage == "")
+                        {
+                            <img src="~/Content/images/Avatar.png" width="100" />
+                        }
+                        else
+                        {
+                            <img src="~/Content/UploadedFiles/Student/StudentImage/@Model.StudentImage" width="100" />
+                        }
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="form-group fg-line">
+                    @Html.HiddenFor(model => model.SignImage)
+                    <a class="mfpAjaxModal" title="Upload Image" id="SignImageUpload" href="/StudentIdentityCard/SignatureUpload">
+                        @*Upload Image*@
+
+                        @if (Model.SignImage == null || Model.SignImage == "")
+                        {
+                            <img src="~/Content/images/Signature.gif" width="100" />
+                        }
+                        else
+                        {
+                            <img src="~/Content/UploadedFiles/Student/Signature/@Model.SignImage" width="100" />
+                        }
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div class="form-group fg-line">
+                @Html.LabelFor(model => model.SelectedCentreCode, new { style = "" })
+                @Html.DropDownList("SelectedCentreCode", Model.ListCentreMasterItems,"--- Select Center ---", new { @class = "form-control input-sm" })
+            </div>
+            @Html.ValidationMessageFor(model => model.SelectedCentreCode)
+        </div>
+
+        <div class="col-sm-6">
+            <div class="form-group fg-line">
+                @Html.LabelFor(model => model.StudentFullName, new { style = "" })
+                @Html.TextBoxFor(model => model.StudentFullName, new { @class = "form-control input-sm" })
+            </div>
+            @Html.ValidationMessageFor(model => model.StudentFullName)
+        </div>
+
+        <div class="col-sm-6">
+            <div class="form-group fg-line">
+                @Html.LabelFor(model => model.StudentFullNameHindi, new { style = "" })
+                @Html.TextBoxFor(model => model.StudentFullNameHindi, new { @class = "form-control input-sm" })
+            </div>
+            @Html.ValidationMessageFor(model => model.StudentFullNameHindi)
+        </div>
+
+        <div class="col-sm-6">
+            <div class="form-group fg-line">
+                @Html.LabelFor(model => model.YearOfReg, new { style = "" })
+                @Html.TextBoxFor(model => model.YearOfReg, new { @class = "form-control input-sm" })
+            </div>
+            @Html.ValidationMessageFor(model => model.YearOfReg)
+        </div>
+
+        <div class="col-sm-6">
+            <div class="form-group fg-line">
+                @Html.LabelFor(model => model.Course, new { style = "" })
+                @Html.TextBoxFor(model => model.Course, new { @class = "form-control input-sm" })
+            </div>
+            @Html.ValidationMessageFor(model => model.Course)
+        </div>
+
+        <div class="col-sm-6">
+            <div class="form-group fg-line">
+                @Html.LabelFor(model => model.RegNo, new { style = "" })
+                @Html.TextBoxFor(model => model.RegNo, new { @class = "form-control input-sm" })
+            </div>
+            @Html.ValidationMessageFor(model => model.RegNo)
+        </div>
+
+        <div class="col-sm-6">
+            <div class="form-group fg-line">
+                @Html.LabelFor(model => model.AddressCorrespondence, new { style = "" })
+                @Html.TextBoxFor(model => model.AddressCorrespondence, new { @class = "form-control input-sm" })
+            </div>
+            @Html.ValidationMessageFor(model => model.AddressCorrespondence)
+        </div>
+
+        <div class="col-sm-6">
+            <div class="form-group fg-line">
+                @Html.LabelFor(model => model.AddressPermenant, new { style = "" })
+                @Html.TextBoxFor(model => model.AddressPermenant, new { @class = "form-control input-sm" })
+            </div>
+            @Html.ValidationMessageFor(model => model.AddressPermenant)
+        </div>
+
+        <div class="col-sm-6">
+            <div class="form-group fg-line">
+                @Html.LabelFor(model => model.DateOfBirth, new { style = "" })
+                @Html.TextBoxFor(model => model.DateOfBirth, new { @class = "form-control input-sm" })
+            </div>
+            @Html.ValidationMessageFor(model => model.DateOfBirth)
+        </div>
+
+        <div class="col-sm-6">
+            <div class="form-group fg-line">
+                @Html.LabelFor(model => model.Bloodgroup, new { style = "" })
+                @Html.DropDownList("Bloodgroup", ViewData["Bloodgroup"] as List<SelectListItem>, new { @class = "form-control input-sm" })
+            </div>
+            @Html.ValidationMessageFor(model => model.Bloodgroup)
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group fg-line">
+                @Html.LabelFor(model => model.StudentMobileNumber, new { style = "" })
+                @Html.TextBoxFor(model => model.StudentMobileNumber, new { @class = "form-control input-sm" })
+            </div>
+            @Html.ValidationMessageFor(model => model.StudentMobileNumber)
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group fg-line">
+                @Html.LabelFor(model => model.CardValidity, new { style = "" })
+                @Html.TextBoxFor(model => model.CardValidity, new { @class = "form-control input-sm" })
+            </div>
+            @Html.ValidationMessageFor(model => model.CardValidity)
+        </div>
+        <div class="col-sm-12">
+            <div class="form-group" style="margin-left: 2%; ">
+                <input type="button" id="SaveStudentIdentityCardRecord" value="Save" class="btn btn-primary" />
+                <input type="button" id="ResetStudentIdentityCardRecord" value="Close" class="btn btn-secondary" />
+            </div>
+            </div>
+
+        </div>
+
+
+
+</form>
+
+@*</div>*@
+<script src="@Url.Content("~/Scripts/jquery.validate.js") " type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        StudentIdentityCard.Initialize();
+    });
+
+
+</script>
