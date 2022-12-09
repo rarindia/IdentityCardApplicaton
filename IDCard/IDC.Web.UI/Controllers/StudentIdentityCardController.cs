@@ -40,6 +40,7 @@ namespace IDC.Web.UI.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+
             //StudentIdentityCardViewModel model = new StudentIdentityCardViewModel();
             return View("/Views/Student/StudentIdentityCard/Index.cshtml");
         }
@@ -49,7 +50,10 @@ namespace IDC.Web.UI.Controllers
             try
             {
                 StudentIdentityCardViewModel model = new StudentIdentityCardViewModel();
-
+                model.IsUnderValidity = Helper.ValidateDate();
+                model.IsShowMessage = Helper.ShowExpirationMessage();
+                if (model.IsShowMessage)
+                    model.ExpiredInDays = Helper.NumberOfDays();
                 if (!string.IsNullOrEmpty(actionMode))
                 {
                     TempData["ActionMode"] = actionMode;
@@ -71,6 +75,7 @@ namespace IDC.Web.UI.Controllers
         public ActionResult StudentInfo(string Id)
         {
             StudentIdentityCardViewModel model = new StudentIdentityCardViewModel();
+
             try
             {
                 model.StudentIdentityCardDTO = new StudentIdentityCard();
@@ -114,7 +119,7 @@ namespace IDC.Web.UI.Controllers
                 li_BloodGroup.Add(new SelectListItem { Text = "AB+", Value = "AB+" });
                 ViewData["Bloodgroup"] = new SelectList(li_BloodGroup, "Value", "Text", model.StudentIdentityCardDTO.Bloodgroup);
 
-                model.ListStudentIdentityCard = GetListOrgStudyCentreMaster();                
+                model.ListStudentIdentityCard = GetListOrgStudyCentreMaster();
 
                 return PartialView("/Views/Student/StudentIdentityCard/StudentInfo.cshtml", model);
             }
@@ -153,14 +158,15 @@ namespace IDC.Web.UI.Controllers
                         model.StudentIdentityCardDTO.SelectedCentreCode = model.SelectedCentreCode;
 
                         IBaseEntityResponse<StudentIdentityCard> response = _StudentIdentityCardBA.UpdateStudentIdentityCard(model.StudentIdentityCardDTO);
-                        if(model.StudentIdentityCardDTO.StudentId > 0)
+                        if (model.StudentIdentityCardDTO.StudentId > 0)
                         {
                             model.StudentIdentityCardDTO.errorMessage = CheckError((response.Entity != null) ? response.Entity.ErrorCode : 20, ActionModeEnum.Update);
-                        }else
+                        }
+                        else
                         {
                             model.StudentIdentityCardDTO.errorMessage = CheckError((response.Entity != null) ? response.Entity.ErrorCode : 20, ActionModeEnum.Insert);
                         }
-                        
+
 
                     }
 

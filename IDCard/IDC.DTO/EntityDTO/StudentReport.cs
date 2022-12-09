@@ -156,7 +156,7 @@ namespace IDC.DTO
             set;
         }
 
-
+        public string CentreFooterImage { get; set; }
 
 
     }

@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -209,6 +210,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Helper.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\StudentIdentityCardController.cs" />
@@ -220,6 +222,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>IDCARDDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="IDCardSrvDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IDCardSrvDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -5824,6 +5831,17 @@
     <Content Include="IDCARDDataSet.xss">
       <DependentUpon>IDCARDDataSet.xsd</DependentUpon>
     </Content>
+    <Content Include="IDCardSrvDataSet.xsc">
+      <DependentUpon>IDCardSrvDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="IDCardSrvDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>IDCardSrvDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="IDCardSrvDataSet.xss">
+      <DependentUpon>IDCardSrvDataSet.xsd</DependentUpon>
+    </Content>
     <None Include="Properties\PublishProfiles\Vinit.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\IDC_Scripts\Application\AMSValidation.js" />
@@ -5890,9 +5908,7 @@
     <Content Include="Views\Student\StudentIdentityCard\StudentList.cshtml" />
     <Content Include="Views\Student\StudentIdentityCard\View1.cshtml" />
     <Content Include="Views\Student\StudentIdentityCard\View11.cshtml" />
-    <Content Include="Views\Student\StudentIdentityCard\vssver.scc" />
     <Content Include="Views\Student\Report\StudentIdentityCardReport\Index.cshtml" />
-    <Content Include="Views\Student\Report\StudentIdentityCardReport\vssver.scc" />
     <Content Include="Views\Student\StudentIdentityCard\SignatureUpload.cshtml" />
     <Content Include="Views\Student\StudentIdentityCard\StudentImageUpload.cshtml" />
   </ItemGroup>

@@ -39,15 +39,19 @@ namespace IDC.Web.UI.Controllers
         {
             try
             {
+              
                 StudentReportViewModel model = new StudentReportViewModel();
-
+                model.IsUnderValidity = Helper.ValidateDate();
+                model.IsShowMessage = Helper.ShowExpirationMessage();
+                if (model.IsShowMessage)
+                    model.ExpiredInDays = Helper.NumberOfDays();
                 //SelectedICardView
                 List<SelectListItem> SelectedICardView = new List<SelectListItem>();
                 ViewBag.SelectedICardView = new SelectList(SelectedICardView, "Value", "Text");
                 List<SelectListItem> li_SelectedICardView = new List<SelectListItem>();
+                li_SelectedICardView.Add(new SelectListItem { Text = "Two Side", Value = "T" });
                 li_SelectedICardView.Add(new SelectListItem { Text = "Front", Value = "F" });
                 li_SelectedICardView.Add(new SelectListItem { Text = "Back", Value = "B" });
-                li_SelectedICardView.Add(new SelectListItem { Text = "Two Side", Value = "T" });
                 ViewData["SelectedICardView"] = new SelectList(li_SelectedICardView, "Value", "Text", model.StudentReportDTO.SelectedICardView);
 
                 return View("/Views/Student/Report/StudentIdentityCardReport/Index.cshtml", model);
@@ -67,13 +71,14 @@ namespace IDC.Web.UI.Controllers
         {
             try
             {
+                model.IsUnderValidity = Helper.ValidateDate();
                 //SelectedICardView
                 List<SelectListItem> SelectedICardView = new List<SelectListItem>();
                 ViewBag.SelectedICardView = new SelectList(SelectedICardView, "Value", "Text");
                 List<SelectListItem> li_SelectedICardView = new List<SelectListItem>();
+                li_SelectedICardView.Add(new SelectListItem { Text = "Two Side", Value = "T" });
                 li_SelectedICardView.Add(new SelectListItem { Text = "Front", Value = "F" });
                 li_SelectedICardView.Add(new SelectListItem { Text = "Back", Value = "B" });
-                li_SelectedICardView.Add(new SelectListItem { Text = "Two Side", Value = "T" });
                 ViewData["SelectedICardView"] = new SelectList(li_SelectedICardView, "Value", "Text", model.StudentReportDTO.SelectedICardView);
 
                 if (model.IsPosted == true)

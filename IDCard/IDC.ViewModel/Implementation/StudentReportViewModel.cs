@@ -327,10 +327,12 @@ namespace IDC.ViewModel
 
         public string errorMessage { get; set; }
         public bool IsPosted { get; set; }
-        
 
+        public bool IsUnderValidity { get; set; }
 
+        public bool IsShowMessage { get; set; }
 
+        public int ExpiredInDays { get; set; }
     }
 }
 

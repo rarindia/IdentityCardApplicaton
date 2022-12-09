@@ -561,8 +561,14 @@ namespace IDC.ViewModel
 
 
         #region Address
-     
-        # endregion Address
+
+        #endregion Address
+
+        public bool IsUnderValidity { get; set; }
+
+        public bool IsShowMessage { get; set; }
+
+        public int ExpiredInDays { get; set; }
     }
 }
 
