@@ -69,6 +69,9 @@
                     else if (studentReport[0].SelectedCentreCode == "DIST")
                     {
                         param = new ReportParameter[2];
+                        param[0] = new ReportParameter("SignImage", studentReport.Count > 0 ? SignImageFilePath : string.Empty, true);
+                        param[1] = new ReportParameter("StudentImage", studentReport.Count > 0 ? StudentImageFilePath : string.Empty, true);
+
                         rvStudentIdentityCardReportList.LocalReport.ReportPath = Server.MapPath("~/Report/Student/StudentIdentityCardTwoSidedReportWithDistCentre.rdlc");
                         rvStudentIdentityCardReportList.LocalReport.ReportEmbeddedResource = "IDC.Web.UI.Report.StudentIdentityCardTwoSidedReportWithDistCentre.rdlc";
                     }
