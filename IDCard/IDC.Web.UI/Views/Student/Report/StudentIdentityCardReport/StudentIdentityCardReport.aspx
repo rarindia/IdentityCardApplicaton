@@ -36,28 +36,49 @@
                 {
                     MainDiv.Visible = true;
                     NoRecordDiv.Visible = false;
+                    ReportParameter[] param = null;
+                    string SignImageFilePath = new Uri(Server.MapPath("~/Content/UploadedFiles/Student/Signature/" + studentReport[0].SignImage)).AbsoluteUri;
+                    string StudentImageFilePath = new Uri(Server.MapPath("~/Content/UploadedFiles/Student/StudentImage/" + studentReport[0].StudentImage)).AbsoluteUri;
+                    string FooterImageFilePath = new Uri(Server.MapPath("~/Content/images/FooterImage_" + studentReport[0].SelectedCentreCode + ".jpg")).AbsoluteUri;
+
+
                     if (IcardView == "F")
                     {
+                        param = new ReportParameter[2];
+                        param[0] = new ReportParameter("SignImage", studentReport.Count > 0 ? SignImageFilePath : string.Empty, true);
+                        param[1] = new ReportParameter("StudentImage", studentReport.Count > 0 ? StudentImageFilePath : string.Empty, true);
+
                         rvStudentIdentityCardReportList.LocalReport.ReportPath = Server.MapPath("~/Report/Student/StudentIdentityCardFrontReport.rdlc");
                         rvStudentIdentityCardReportList.LocalReport.ReportEmbeddedResource = "IDC.Web.UI.Report.StudentIdentityCardFrontReport.rdlc";
                     }
-                    else if(IcardView == "B")
+                    else if (IcardView == "B")
                     {
+                        param = new ReportParameter[2];
+
+                        param[0] = new ReportParameter("SignImage", studentReport.Count > 0 ? SignImageFilePath : string.Empty, true);
+                        param[1] = new ReportParameter("StudentImage", studentReport.Count > 0 ? StudentImageFilePath : string.Empty, true);
+
                         rvStudentIdentityCardReportList.LocalReport.ReportPath = Server.MapPath("~/Report/Student/StudentIdentityCardBackReport.rdlc");
                         rvStudentIdentityCardReportList.LocalReport.ReportEmbeddedResource = "IDC.Web.UI.Report.StudentIdentityCardBackReport.rdlc";
                     }
-                    else if (studentReport[0].SelectedCentreCode == "MGHV")
-                    {
-                        rvStudentIdentityCardReportList.LocalReport.ReportPath = Server.MapPath("~/Report/Student/StudentIdentityCardTwoSidedReport.rdlc");
-                        rvStudentIdentityCardReportList.LocalReport.ReportEmbeddedResource = "IDC.Web.UI.Report.StudentIdentityCardTwoSidedReport.rdlc";
-                    }
+                    //else if (studentReport[0].SelectedCentreCode == "MGHV")
+                    //{
+                    //    rvStudentIdentityCardReportList.LocalReport.ReportPath = Server.MapPath("~/Report/Student/StudentIdentityCardTwoSidedReport.rdlc");
+                    //    rvStudentIdentityCardReportList.LocalReport.ReportEmbeddedResource = "IDC.Web.UI.Report.StudentIdentityCardTwoSidedReport.rdlc";
+                    //}
                     else if (studentReport[0].SelectedCentreCode == "DIST")
                     {
+                        param = new ReportParameter[2];
                         rvStudentIdentityCardReportList.LocalReport.ReportPath = Server.MapPath("~/Report/Student/StudentIdentityCardTwoSidedReportWithDistCentre.rdlc");
                         rvStudentIdentityCardReportList.LocalReport.ReportEmbeddedResource = "IDC.Web.UI.Report.StudentIdentityCardTwoSidedReportWithDistCentre.rdlc";
                     }
                     else
                     {
+                        param = new ReportParameter[3];
+                        param[0] = new ReportParameter("SignImage", studentReport.Count > 0 ? SignImageFilePath : string.Empty, true);
+                        param[1] = new ReportParameter("StudentImage", studentReport.Count > 0 ? StudentImageFilePath : string.Empty, true);
+                        param[2] = new ReportParameter("FooterImage", studentReport.Count > 0 ? FooterImageFilePath : string.Empty, true);
+
                         rvStudentIdentityCardReportList.LocalReport.ReportPath = Server.MapPath("~/Report/Student/StudentIdentityCardTwoSidedReportWithCentre.rdlc");
                         rvStudentIdentityCardReportList.LocalReport.ReportEmbeddedResource = "IDC.Web.UI.Report.StudentIdentityCardTwoSidedReportWithCentre.rdlc";
                     }
@@ -69,12 +90,7 @@
 
                     rvStudentIdentityCardReportList.LocalReport.EnableExternalImages = true;
 
-                    string SignImageFilePath = new Uri(Server.MapPath("~/Content/UploadedFiles/Student/Signature/"+ studentReport[0].SignImage)).AbsoluteUri;
-                    string StudentImageFilePath = new Uri(Server.MapPath("~/Content/UploadedFiles/Student/StudentImage/"+ studentReport[0].StudentImage)).AbsoluteUri;
 
-                    ReportParameter[] param = new ReportParameter[2];
-                    param[0] = new ReportParameter("SignImage", studentReport.Count > 0 ? SignImageFilePath : string.Empty, true);
-                    param[1] = new ReportParameter("StudentImage", studentReport.Count > 0 ? StudentImageFilePath : string.Empty, true);
                     rvStudentIdentityCardReportList.LocalReport.SetParameters(param);
 
                     rvStudentIdentityCardReportList.LocalReport.Refresh();

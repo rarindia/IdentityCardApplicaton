@@ -50,8 +50,8 @@ namespace IDC.Web.UI.Controllers
                 ViewBag.SelectedICardView = new SelectList(SelectedICardView, "Value", "Text");
                 List<SelectListItem> li_SelectedICardView = new List<SelectListItem>();
                 li_SelectedICardView.Add(new SelectListItem { Text = "Two Side", Value = "T" });
-                li_SelectedICardView.Add(new SelectListItem { Text = "Front", Value = "F" });
-                li_SelectedICardView.Add(new SelectListItem { Text = "Back", Value = "B" });
+                //li_SelectedICardView.Add(new SelectListItem { Text = "Front", Value = "F" });
+                //li_SelectedICardView.Add(new SelectListItem { Text = "Back", Value = "B" });
                 ViewData["SelectedICardView"] = new SelectList(li_SelectedICardView, "Value", "Text", model.StudentReportDTO.SelectedICardView);
 
                 return View("/Views/Student/Report/StudentIdentityCardReport/Index.cshtml", model);

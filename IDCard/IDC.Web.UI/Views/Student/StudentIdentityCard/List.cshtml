@@ -14,7 +14,7 @@ else
     <div class="block-header">
         @if (Model.IsShowMessage)
         {
-            <marquee style="text-transform: none;">License will expire in @Model.ExpiredInDays days. Renew it as early as possible.</marquee>
+            <marquee style="color:red">License will expire in @Model.ExpiredInDays days. Renew it as early as possible.</marquee>
         }
         <h2 style="text-transform: none;"><i class="zmdi zmdi-view-toc"></i>&nbsp;Create Student For ID Card</h2>
     </div>
